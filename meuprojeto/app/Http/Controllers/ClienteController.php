@@ -31,7 +31,21 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 1. Validar os dados que vêm do formulário
+    $request->validate([
+        'nome'     => 'required|string|max:255', // Adicionado
+        'dt_venda' => 'required|date',
+        'valor'    => 'required|numeric',
+    ]);
+
+    \App\Models\Cliente::create([
+        'nome'     => $request->nome, // Adicionado
+        'dt_venda' => $request->dt_venda,
+        'valor'    => $request->valor,
+    ]);
+
+        // 3. Redirecionar com a mensagem de sucesso
+        return redirect()->route('clientes.index')->with('success', 'Salvo com sucesso!');
     }
 
     /**
@@ -53,16 +67,35 @@ class ClienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'dt_venda' => 'required|date',
+            'valor' => 'required|numeric',
+        ]);
+    
+        $cliente = \App\Models\Cliente::findOrFail($id);
+        
+        // Atualiza o registro
+        $cliente->update([
+            'nome' => $request->nome,
+            'dt_venda' => $request->dt_venda,
+            'valor' => $request->valor,
+        ]);
+    
+        // Força uma resposta HTTP direta de redirecionamento estável
+        return redirect()->to('/clientes')->with('success', 'Cliente atualizado com sucesso!');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Cliente $cliente)
+        /**
+         * Remove the specified resource from storage.
+         */
+    public function destroy($id)
     {
-        //
+        $cliente = \App\Models\Cliente::findOrFail($id);
+        $cliente->delete();
+
+        // ADICIONE ESTA LINHA ABAIXO:
+        return redirect()->route('clientes.index')->with('success', 'Cliente excluído com sucesso!');
     }
 }

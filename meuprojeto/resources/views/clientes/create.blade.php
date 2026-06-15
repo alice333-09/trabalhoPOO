@@ -1,4 +1,6 @@
-<x-app-layout>
+@extends('layouts.app')
+
+@section('content')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Adicionar Cliente') }}
@@ -61,12 +63,12 @@
                     
                     <form action="{{ url('/clientes') }}" method="POST" class="space-y-6">
                         @csrf <div>
-                            <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome</label>
-                            <input type="text" id="nome" name="nome" value="{{ old('nome') }}" required
-                                   class="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 sm:text-sm">
-                            @error('nome')
-                                <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
-                            @enderror
+                        <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+                        <input type="text" id="nome" name="nome" value="{{ old('nome') }}" required
+                               class="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm">
+                        @error('nome')
+                            <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
+                        @enderror
                         </div>
 
                         <div>
@@ -104,4 +106,4 @@
             </div>
         </main>
     </div>
-</x-app-layout>
+@endsection
