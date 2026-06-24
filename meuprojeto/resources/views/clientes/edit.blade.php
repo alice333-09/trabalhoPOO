@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="flex flex-col justify-center font-sans antialiased text-gray-900 py-12 sm:px-6 lg:px-8 min-h-screen bg-gray-50">
+<div class="flex flex-col justify-start font-sans antialiased text-gray-900 pt-4 pb-12 sm:px-6 lg:px-8">
 
     <div class="sm:mx-auto w-full max-w-md">
         <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-sm">
@@ -58,9 +58,9 @@
                             Cancelar
                         </button>
                     </a>
-                    <button type="submit" class="w-1/2 sm:w-auto inline-flex justify-center rounded-lg border border-transparent bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-700 focus:outline-none transition duration-150">
-                        Salvar
-                    </button>
+                        <button type="submit" class=" inline-flex justify-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none transition duration-150">
+                            Salvar
+                        </button>
                 </div>
 
             </form>

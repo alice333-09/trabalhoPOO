@@ -1,22 +1,19 @@
-FROM php:8.3-apache
+FROM php:8.3-fpm
 
-# Instala o utilitário unzip do sistema e a extensão zip do PHP
+# Instalar dependências do sistema e extensões do PHP necessárias para o Laravel
 RUN apt-get update && apt-get install -y \
-    zlib1g-dev \
-    libzip-dev \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    zip \
     unzip \
-    && docker-php-ext-install zip pdo pdo_mysql
+    git \
+    curl
 
-# Instala o Composer para gerenciar as dependências do Laravel
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo_mysql gd
+
+# Instalar o Composer dentro do container
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN a2enmod rewrite
-
-# Altera a raiz do Apache para a pasta /public do Laravel
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
-
-WORKDIR /var/www/html
-
-COPY . /var/www/html
+WORKDIR /var/www

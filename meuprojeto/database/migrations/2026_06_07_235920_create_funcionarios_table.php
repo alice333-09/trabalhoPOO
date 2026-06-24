@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome', 100);
             $table->string('turno', 50);
-            $table->time('horas')->default(0);
+            $table->integer('horas')->default(0);
             $table->timestamps();
         });
     }
