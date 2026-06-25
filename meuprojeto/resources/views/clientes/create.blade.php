@@ -13,7 +13,7 @@
                 <h2 class="text-center text-2xl font-bold tracking-tight text-gray-900 mb-8">
                     Adicionar Novo Cliente
                 </h2>
-            </div   
+            </div>
             <div class="bg-white py-8 px-4 shadow-sm sm:rounded-xl sm:px-10 border border-gray-200">
 
                 <form action="{{ url('/clientes') }}" method="POST" class="space-y-6">
@@ -24,7 +24,7 @@
                     @error('nome')
                         <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
                     @enderror
-                    </div   
+</div>   
                     <div>
                         <label for="dt_venda" class="block text-sm font-medium text-gray-700 mb-1">Data de venda</label>
                         <input type="date" id="dt_venda" name="dt_venda" value="{{ old('dt_venda') }}" required
@@ -32,7 +32,7 @@
                         @error('dt_venda')
                             <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
                         @enderror
-                    </div   
+</div>   
                     <div>
                         <label for="valor" class="block text-sm font-medium text-gray-700 mb-1">Valor</label>
                         <input type="number" id="valor" name="valor" step="0.01" value="{{ old('valor') }}" required
@@ -40,7 +40,7 @@
                         @error('valor')
                             <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
                         @enderror
-                    </div   
+</div>   
                     <div class="flex items-center justify-end space-x-3 pt-2">
                         <a href="{{ url('/clientes') }}" class="w-1/2 sm:w-auto">
                             <button type="button" class="w-full inline-flex justify-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none transition duration-150">
@@ -50,9 +50,9 @@
                             <button type="submit" class=" inline-flex justify-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none transition duration-150">
                                 Salvar
                             </button>
-                    </div   
+</div>   
                 </form>
-            </div   
+</div>   
         </div>
     </main>
 @endsection
